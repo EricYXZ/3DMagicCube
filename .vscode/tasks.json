@@ -4,13 +4,8 @@
     {
       "label": "build debug x64",
       "type": "shell",
-      "command": "cmd.exe",
-      "args": [
-        "/d",
-        "/s",
-        "/c",
-        "call \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\VsDevCmd.bat\" -arch=x64 -host_arch=x64 && msbuild \"${workspaceFolder}\\Pocket Cube.sln\" /p:Configuration=Debug /p:Platform=x64 /m"
-      ],
+      "command": "${workspaceFolder}\\scripts\\build-debug-x64.cmd",
+      "args": [],
       "group": {
         "kind": "build",
         "isDefault": true
@@ -20,13 +15,8 @@
     {
       "label": "clean debug x64",
       "type": "shell",
-      "command": "cmd.exe",
-      "args": [
-        "/d",
-        "/s",
-        "/c",
-        "call \"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\Common7\\Tools\\VsDevCmd.bat\" -arch=x64 -host_arch=x64 && msbuild \"${workspaceFolder}\\Pocket Cube.sln\" /t:Clean /p:Configuration=Debug /p:Platform=x64"
-      ],
+      "command": "${workspaceFolder}\\scripts\\clean-debug-x64.cmd",
+      "args": [],
       "problemMatcher": "$msCompile"
     }
   ]
