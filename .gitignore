@@ -6,11 +6,8 @@
 /x86/
 /Debug/
 /Release/
-/GLtest/x64/
-/GLtest/Debug/
-/GLtest/Release/
-/GLtest/obj/
-/GLtest/bin/
+/bin/
+/build/
 *.obj
 *.pdb
 *.idb

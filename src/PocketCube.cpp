@@ -150,45 +150,67 @@ void inite_cube_color()
 }
 void Inite_EasyX()
 {
-    initgraph(1000, 600);//easyX窗口
-    setbkcolor(RGB(254, 254, 254));
+    initgraph(1000, 600);
+    setbkcolor(RGB(245, 247, 250));
     cleardevice();
 
-    loadimage(&Show_How_Use, "assets/Show_How_Use.jpg", 500, 600); // 加载图像，最后一个参数是背景色索引值（默认-1表示不透明）
-    putimage(0, 0, &Show_How_Use); // 将图像放置在窗口左上角
+    setfillcolor(RGB(235, 239, 246));
+    solidrectangle(0, 0, 470, 600);
+    loadimage(&Show_How_Use, "assets/Show_How_Use.jpg", 420, 520);
+    putimage(25, 40, &Show_How_Use);
+
+    setlinecolor(RGB(207, 214, 226));
+    rectangle(24, 39, 445, 560);
+
+    setfillcolor(RGB(255, 255, 255));
+    solidrectangle(470, 0, 1000, 600);
 
     setbkmode(TRANSPARENT);
 
-    Draw_TEXT(500, 60, 400, 40, "(1)按下UDFBRLXYZ及其小写字母进行旋转");
-    Draw_TEXT(475, 110, 400, 40, "(2)按下鼠标左右中键可以调整视角");
-    Draw_TEXT(520, 160, 200, 40, "(3)按下\"S\"自动打乱");
-    Draw_TEXT(525, 210, 200, 40, "(4)按下Enter自动复原");
+    settextstyle(34, 0, "Consolas");
+    settextcolor(RGB(26, 32, 44));
+    outtextxy(525, 48, "Pocket Cube");
 
-    settextcolor(RGB(0, 0, 0));
-    outtextxy(640, 680, Version_Information);
+    settextstyle(18, 0, "Consolas");
+    settextcolor(RGB(95, 107, 130));
+    outtextxy(528, 92, "OpenGL cube trainer and solver");
+
+    setlinecolor(RGB(226, 232, 240));
+    line(525, 126, 930, 126);
+
+    settextstyle(20, 0, "Consolas");
+    settextcolor(RGB(51, 65, 85));
+    outtextxy(528, 152, "Controls");
+
+    Draw_TEXT(525, 190, 405, 42, "U D F B R L / lower-case: rotate faces");
+    Draw_TEXT(525, 242, 405, 42, "X Y Z / lower-case: rotate the whole cube");
+    Draw_TEXT(525, 294, 405, 42, "Mouse left / middle / right: adjust camera");
+    Draw_TEXT(525, 346, 405, 42, "S: scramble cube");
+    Draw_TEXT(525, 398, 405, 42, "Enter: auto solve");
+
+    settextstyle(16, 0, "Consolas");
+    settextcolor(RGB(100, 116, 139));
+    outtextxy(528, 548, "Version ");
+    outtextxy(600, 548, Version_Information);
 }
 
-//绘制文本框
 void Draw_TEXT(int x, int y, int w, int h, const char* text)
 {
+    setfillcolor(RGB(248, 250, 252));
+    solidrectangle(x, y, x + w, y + h);
+    setlinecolor(RGB(226, 232, 240));
+    rectangle(x, y, x + w, y + h);
 
-    for (int i = y + 100; i >= y; i -= 5)
-    {
-        setfillcolor(RGB(254, 254, 254));
-        solidrectangle(x, i, x + w, i + h);
+    setfillcolor(RGB(59, 130, 246));
+    solidrectangle(x, y, x + 6, y + h);
 
-        //文本
-        int hSpace = (w - textwidth(text)) / 2;
-        int vSpace = (h - textheight(text)) / 2;
-
-        settextcolor(RGB(0, 0, 0));
-        outtextxy(x + hSpace, i + vSpace, text);
-
-    }
-
+    settextstyle(15, 0, "Consolas");
+    settextcolor(RGB(30, 41, 59));
+    int vSpace = (h - textheight(text)) / 2;
+    outtextxy(x + 16, y + vSpace, text);
 }
 
-//初始化各个方块的顶点坐标
+// Cube face vertex data
 GLfloat red[18][4][3] = {
     //9个底板
     10,10,-30,
@@ -18895,9 +18917,9 @@ void AUTOMATIC_RECOVERY(int idx)
 
         Sleep(200);
         if (CHECK_ALL(cube))
-            Draw_TEXT(600, 450, 300, 30, "复 原 完 成！");
+            Draw_TEXT(600, 450, 300, 30, "Solved");
         else
-            Draw_TEXT(600, 450, 300, 30, "复 原 失 败！");
+            Draw_TEXT(600, 450, 300, 30, "Solve failed");
     }
 }
 
@@ -19408,7 +19430,7 @@ int main(int argc, char* argv[])
     init();
     glewInit();
 
-    loadTexture("pic.bmp");
+    loadTexture("assets/pic.bmp");
     glutDisplayFunc(myDisplay);//启动绘制
 
     glutKeyboardFunc(onKeyboard);//实时监测键盘的变化

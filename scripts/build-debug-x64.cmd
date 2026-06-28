@@ -13,5 +13,5 @@ if not exist "%VSDEVCMD%" (
 call "%VSDEVCMD%" -arch=x64 -host_arch=x64
 if errorlevel 1 exit /b %errorlevel%
 
-msbuild "%ROOT%\Pocket Cube.sln" /p:Configuration=Debug /p:Platform=x64 /m
+msbuild "%ROOT%\PocketCube.sln" /p:Configuration=Debug /p:Platform=x64 /m
 exit /b %errorlevel%

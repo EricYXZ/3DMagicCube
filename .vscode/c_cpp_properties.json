@@ -7,8 +7,8 @@
       "compilerPath": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.39.33519\\bin\\Hostx64\\x64\\cl.exe",
       "cppStandard": "c++14",
       "includePath": [
-        "${workspaceFolder}\\GLtest",
-        "${workspaceFolder}\\packages\\nupengl.core.0.1.0.1\\build\\native\\include",
+        "${workspaceFolder}\\src",
+        "${workspaceFolder}\\vendor\\nupengl.core.0.1.0.1\\build\\native\\include",
         "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Auxiliary\\VS\\include",
         "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\um",
         "C:\\Program Files (x86)\\Windows Kits\\10\\Include\\10.0.18362.0\\shared"

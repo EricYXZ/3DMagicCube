@@ -1,38 +1,53 @@
-# Pocket Cube 0.0.1
+# Pocket Cube
 
-基于 C++、OpenGL/freeglut/GLEW 和 EasyX 的二阶魔方课程设计项目。程序会打开一个 EasyX 操作说明窗口和一个 OpenGL 魔方窗口，支持键盘旋转、鼠标调整视角、随机打乱和自动复原。
+Pocket Cube is a C++ course-design project for visualizing, scrambling, and solving a 2x2 cube. It uses OpenGL/freeglut/GLEW for the 3D cube view and EasyX for the control/help window.
 
-## 环境
+## Features
+
+- Interactive 3D pocket cube display
+- Keyboard face rotations and whole-cube rotations
+- Mouse camera controls
+- Random scramble
+- Automatic recovery/solve flow
+- VS Code build and debug configuration for Windows
+
+## Requirements
 
 - Windows
-- Visual Studio 2022 Community 或 Build Tools，安装 MSVC v143
-- Windows 10 SDK 10.0.18362.0 或更新版本
-- EasyX，已安装到 Visual Studio 的 `VC\Auxiliary\VS` 目录
-- VS Code，推荐安装 Microsoft C/C++ 扩展
+- Visual Studio 2022 Community or Build Tools with MSVC v143
+- Windows 10 SDK 10.0.18362.0 or newer
+- EasyX installed under the Visual Studio `VC\Auxiliary\VS` directory
+- VS Code with the Microsoft C/C++ extension
 
-本仓库保留了旧工程依赖的 `packages/nupengl.*` NuGet 包，因为 `.vcxproj` 直接导入其中的 OpenGL/freeglut/GLEW 目标文件。
-Debug 配置会链接 MSVC Debug CRT，`.vscode/launch.json` 已为当前本机补充 VS 2022 的 Debug CRT 路径。
+The required OpenGL/freeglut/GLEW headers, libraries, and runtime DLLs are vendored under `vendor/` because the original Visual Studio project depends on these NuGet package contents directly.
 
-## 用 VS Code 运行
+## Run in VS Code
 
-1. 用 VS Code 打开仓库根目录。
-2. 按 `Ctrl+Shift+B` 执行默认任务 `build debug x64`。
-3. 按 `F5` 运行 `Pocket Cube (Debug x64)`。
+1. Open this repository folder in VS Code.
+2. Press `Ctrl+Shift+B` and run the default task: `build debug x64`.
+3. Press `F5` and run: `Pocket Cube (Debug x64)`.
 
-调试配置会先构建 `Pocket Cube.sln`，再运行 `x64/Debug/pocket cube.exe`，工作目录设置为 `GLtest`，这样程序可以找到 `pic.bmp` 和 `assets/Show_How_Use.jpg`。
-构建任务实际调用 `scripts/build-debug-x64.cmd`，避免 Windows 路径中空格造成命令解析失败。
+The build task calls `scripts/build-debug-x64.cmd`, which initializes the Visual Studio developer environment and builds `PocketCube.sln`. The debugger starts `bin/x64/Debug/PocketCube.exe` with the repository root as the working directory, so assets can be loaded from `assets/`.
 
-## 操作
+## Controls
 
-- `U D F B R L X Y Z` 及对应小写字母：旋转魔方或整体视角
-- 鼠标左键、中键、右键：调整观察视角
-- `S`：随机打乱
-- `Enter`：自动复原
+- `U D F B R L` and lower-case variants: rotate cube faces
+- `X Y Z` and lower-case variants: rotate the whole cube
+- Mouse left, middle, and right buttons: adjust the camera
+- `S`: scramble the cube
+- `Enter`: auto solve
 
-## 项目结构
+## Project Layout
 
-- `Pocket Cube.sln`：Visual Studio 解决方案
-- `GLtest/Pocket Cube 0.0.1.cpp`：主源码
-- `GLtest/pic.bmp`：OpenGL 纹理
-- `GLtest/assets/Show_How_Use.jpg`：EasyX 操作说明图片
-- `.vscode/`：VS Code 构建、调试和 IntelliSense 配置
+```text
+.
+├── assets/                  Runtime images and texture files
+├── src/                     C++ source code
+├── scripts/                 VS Code build/clean helper scripts
+├── vendor/                  Vendored OpenGL/freeglut/GLEW package files
+├── .vscode/                 VS Code tasks, debugger, and IntelliSense config
+├── PocketCube.sln           Visual Studio solution
+└── PocketCube.vcxproj       MSBuild C++ project
+```
+
+Generated files are written to `bin/` and `build/`; both directories are ignored by Git.
