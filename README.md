@@ -1,5 +1,7 @@
 # Pocket Cube
 
+![Pocket Cube runtime screenshot](assets/runtime-screenshot.png)
+
 Pocket Cube is a C++ course-design project for visualizing, scrambling, and solving a 2x2 cube. It uses OpenGL/freeglut/GLEW for the 3D cube view and EasyX for the control/help window.
 
 ## Features
